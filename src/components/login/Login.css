@@ -1,0 +1,79 @@
+.main {
+    background: rgb(240, 238, 238);
+  }
+  
+  .main form {
+    margin: 15px;
+  }
+  
+  .main h1 {
+    font-size: 50px;
+  }
+  
+  .main p {
+    font-size: 18px;
+  }
+  
+  p.style-text-sign-up {
+    font-size: 15px;
+    text-align: center;
+  }
+  
+  .display-flex {
+    width: 70%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  
+  .custom-margin {
+    margin-top: 80px;
+  }
+  
+  .custom-style-card {
+    width: 450px;
+    background-color: rgb(192, 53, 53);
+    padding: 10px;
+  }
+  
+  .toast {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 1rem;
+  }
+  
+  @media screen and (min-width: 400px) {
+  
+    .title,
+    .subTitle {
+      text-align: center;
+    }
+  }
+  
+  @media screen and (max-width: 992px) {
+    .custom-style-card {
+      width: auto;
+    }
+  
+    .title,
+    .subTitle {
+      text-align: center;
+    }
+  }
+  
+  @media screen and (min-width: 992px) {
+  
+    .title,
+    .subTitle {
+      text-align: left;
+    }
+  }
+  
+  .btn-sign-up {
+    width: 70%;
+    display: block;
+    margin: 0 auto;
+  }

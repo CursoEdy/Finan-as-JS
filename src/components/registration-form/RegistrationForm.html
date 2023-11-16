@@ -1,0 +1,86 @@
+<button type="button" class="btn modal btn-primary dialog-registration-modal" data-toggle="modal"
+    data-target="#modalRegistrationContinuation" style="display: none"></button>
+
+<!-- Modal -->
+<div class="modal dialog-registration-modal fade" id="modalRegistrationContinuation" tabindex="-1"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    Cadastre-se
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="continue-registration-form">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control nameRegistrationInput" placeholder="Nome"
+                            aria-label="name" aria-describedby="name" />
+                    </div>
+
+                    <div id="nameRegistrationError" class="error-name">Nome inválido. Por favor, insira um nome sem
+                        números ou caracteres
+                        especiais.</div>
+
+
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control emailRegistrationInput" placeholder="Email"
+                            aria-label="email" aria-describedby="email" />
+                    </div>
+
+                    <div id="emailErrorRegistration" class="error-email">Email inválido. Por favor, insira um endereço
+                        de
+                        email
+                        válido.</div>
+
+
+                    <div class="form-group">
+                        <!-- INCLUIR SELECT AQUI DINAMICAMENTE COM JS -->
+                        <div class="form-group select-container-registration"></div>
+                    </div>
+
+                    <div class="image-block">
+                        <img class="circle avatar" alt="" />
+                    </div>
+
+                    <label for="basic-url">Adicione uma foto ao perfil</label>
+                    <div class="input-group mb-3">
+                        <input type="file" class="form-control uploadFile" aria-label="imgProfile" aria-describedby="imgProfile" />
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <input type="password" class="form-control passwordRegistrationInput" placeholder="Senha"
+                            aria-label="Password" aria-describedby="password" autocomplete="password" />
+                    </div>
+
+                    <div id="passwordRegistrationError" class="error-password">Insira uma senha
+                        com pelo
+                        menos 4 caracteres.</div>
+
+                    <div class="input-group mb-3">
+                        <input type="password" class="form-control confirmPasswordRegistrationInput"
+                            placeholder="Confirmar" aria-label="confirmPassword" aria-describedby="confirmPassword"
+                            autocomplete="confirm-password" />
+                    </div>
+
+                    <div style="display: none;" class="no-match-password">
+                        As senhas não são iguais!!
+                    </div>
+
+                    <div class="d-grid gap-2 mt-4">
+                        <button class="btn
+              btn-success
+              btn-block
+              btn-registration
+              " data-dismiss="modal" aria-label="Close" type="button" onclick="sendDataToBackend()">
+                            CADASTRAR
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+@media screen and (min-width: 375px) {
+  .navbar-nav ul {
+    flex-direction: column;
+  }
+}
+
+@media screen and (min-width: 1140px) {
+  .navbar-nav ul {
+    flex-direction: row;
+  }
+}
+
+.navbar-nav li {
+  list-style: none;
+  cursor: pointer;
+}
+
+.img-logout {
+  position: relative;
+  bottom: 3px;
+}
+
+.profile-img {
+  width: 40px;
+  border-radius: 100%;
+  height: 40px;
+  object-fit: cover;
+}
+
+.navbar-nav li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* opcional, para alinhar horizontalmente */
+}

@@ -1,0 +1,20 @@
+<form>
+    <div class="input-group mb-3">
+        <input type="email" class="form-control email" placeholder="E-mail" aria-label="email"
+            aria-describedby="email" />
+
+    </div>
+    <div id="emailError" class="error-email">Email inválido. Por favor, insira um endereço de email válido.</div>
+
+    <div class="input-group mb-3">
+        <input type="password" class="form-control password" placeholder="Senha" aria-label="password"
+            aria-describedby="password" autocomplete="password" />
+    </div>
+    <div id="passwordLoginFormError" class="error-password">Insira uma senha com pelo menos 4 caracteres.</div>
+
+    <div class="d-grid gap-2">
+        <button class="btn btn-primary btn-login btn-block" onclick="handleLogin(); return false">
+            ENTRAR
+        </button>
+    </div>
+</form>

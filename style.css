@@ -1,0 +1,147 @@
+.card {
+    width: 100%;
+    padding: 4%;
+  }
+  
+  .btn-default {
+    width: 200px;
+    display: block;
+    position: absolute;
+    right: 10px;
+    top: 40px;
+  }
+  
+  .center,
+  .display {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  
+  .actions li {
+    list-style: none;
+    position: relative;
+    left: -44px;
+  }
+  
+  .image {
+    float: left;
+    width: 20px;
+    cursor: pointer;
+  }
+  
+  button:disabled,
+  button:disabled:hover {
+    background-color: transparent;
+  }
+  
+  ul.pagination {
+    position: relative;
+    top: 30px;
+  }
+  
+  button.page-link {
+    margin-left: 10px;
+  }
+  
+  .btn:disabled:hover {
+    color: #343a40 !important;
+    text-decoration: none;
+  }
+  
+  .animationCard {
+    transition: width 2s;
+  }
+  
+  img.income-arrow-left-img,
+  img.income-arrow-right-img,
+  img.expense-arrow-left-img,
+  img.expense-arrow-right-img {
+    width: 40%;
+    cursor: pointer;
+  }
+  
+  @media only screen and (max-width: 768px) {
+  
+    .btn-add-income,
+    .block-register-incomes,
+    .btn-add-expense,
+    .block-register-expenses {
+      margin-top: 30px;
+    }
+  
+    .block-income-search,
+    .block-expense-search {
+      margin-top: 40px;
+    }
+  
+  }
+  
+  @media only screen and (max-width: 900px) {
+  
+    .card-title,
+    .card-text {
+      font-size: 18px;
+    }
+  }
+  
+  @media only screen and (min-width: 900px) {
+  
+    .card-title,
+    .card-text {
+      font-size: 19px;
+    }
+  }
+  
+  @media only screen and (max-width: 991px) {
+  
+    .block-income-search,
+    .block-expense-search {
+      width: 100%;
+    }
+  
+    #select-category-income,
+    #select-category-expense {
+      width: 100%;
+      top: -10px !important;
+    }
+  
+    select.income-select-category,
+    select.expense-select-category {
+      width: 100%;
+    }
+  
+    #select-range-income,
+    #select-range-expense {
+      width: 100%;
+      top: -2px !important;
+      left: 10px !important;
+    }
+  
+  
+    select.income-select-range,
+    select.expense-select-range {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  
+  }
+  
+  .error-email,
+  .error-password,
+  .error-name,
+  .no-match-password {
+    color: rgb(241, 103, 103);
+    display: none;
+    font-size: 15px;
+    margin-bottom: 10px;
+  }
+  
+  .btn.disabled,
+  .btn:disabled {
+    pointer-events: none;
+  }
+  
+  .hide-id-column {
+    display: none;
+  }
