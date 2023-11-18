@@ -1,0 +1,58 @@
+<button type="button" class="btn modal btn-primary add-income-modal" data-toggle="modal"
+    data-target="#modalDialogAddIncomes" style="display: none"></button>
+
+<!-- Modal -->
+<div class="modal add-income-modal fade" id="modalDialogAddIncomes" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    Adicionar receita
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="add-income-modal-form">
+                    <!-- INCLUIR SELECT AQUI DINAMICAMENTE COM JS -->
+                    <div class="form-group select-container-income"></div>
+                    <div class="form-group select-container-payment-method-income"></div>
+
+                    <div class="form-group">
+                        <label for="value">Valor</label>
+                        <input type="text" class="form-control valueDialogAddIncomes" name="value" id="value"
+                            aria-describedby="value" autocomplete="off" placeholder="Digite o valor" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dueDateIncome">Data de Entrada</label>
+                        <input type="date" class="form-control dueDateIncome" id="dueDateIncome" name="dueDateIncome"
+                            aria-describedby="dueDateIncome" />
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input currentFutureFixedIncome" type="checkbox"
+                            value="currentFutureFixedIncome" name="currentFutureFixedIncome"
+                            id="currentFutureFixedIncome" />
+                        <label class="form-check-label" for="currentFutureFixedIncome"> Receita fixa para o mês atual e
+                            períodos futuros </label>
+                    </div>
+
+                    <br>
+                    <div class="form-check">
+                        <input class="form-check-input currentPastFixedIncome" type="checkbox"
+                            value="currentPastFixedIncome" name="currentPastFixedIncome" id="currentPastFixedIncome" />
+                        <label class="form-check-label" for="currentPastFixedIncome"> Receitas fixa para todos os meses
+                            do ano </label>
+                    </div>
+
+                    <button class="btn btn-primary add-income btn-block" data-dismiss="modal"
+                        type="submit">Adicionar</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
