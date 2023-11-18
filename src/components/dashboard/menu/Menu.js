@@ -36,7 +36,6 @@ const messageWelcome = () => {
     const greetingMessage = messageByHour(currentHour);
     const capitalizeNameUser = capitalizeFirstLetter(name);
     messageContainer.innerHTML = `Olá <strong>${capitalizeNameUser}</strong>, ${greetingMessage}`;
-
 }
 
 const getImageUser = () => {

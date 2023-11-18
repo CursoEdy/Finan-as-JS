@@ -1,0 +1,28 @@
+.my-pagination-income {
+    position: relative;
+    float: right;
+    right: 10px;
+    top: 80%;
+  }
+  
+  .block-income-search {
+    float: left;
+    margin-bottom: 30px;
+  }
+  
+  #select-category-income,
+  #select-range-income {
+   float: left;
+   position: relative;
+   top: 25px;
+   left: 10px;
+  }
+  
+  #select-range-income {
+    left: 20px;
+  }
+  
+  #select-category-income select,
+  #select-range-income select {
+    padding: 2px;
+  }
