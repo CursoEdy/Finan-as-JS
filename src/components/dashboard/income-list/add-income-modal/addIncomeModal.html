@@ -23,7 +23,7 @@
                     <div class="form-group">
                         <label for="value">Valor</label>
                         <input type="text" class="form-control valueDialogAddIncomes" name="value" id="value"
-                            aria-describedby="value" autocomplete="off" placeholder="Digite o valor" />
+                            aria-describedby="value" autocomplete="off" placeholder="Digite o valor" oninput="formatCurrency(event, 'income')"/>
                     </div>
 
                     <div class="form-group">
@@ -49,7 +49,7 @@
                     </div>
 
                     <button class="btn btn-primary add-income btn-block" data-dismiss="modal"
-                        type="submit">Adicionar</button>
+                        type="submit" onclick="handleAddIncome(event)">Adicionar</button>
                 </form>
 
             </div>
