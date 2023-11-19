@@ -18,10 +18,13 @@ class AddIncomeModal extends HTMLElement {
 
 const handleAddIncome = (event) => {
     event.preventDefault();
+    const incomeDetails = creatObjDetails('income');
+    const buttonAddIncome = document.querySelector('.add-income');
 
-    const incomeDatails = creatObjDetails('income');
-
-    console.log(incomeDatails)
+    if (!verifyFieldFillTransaction('income', incomeDetails)) {
+        buttonAddIncome.removeAttribute('data-dismiss');
+        alert('Preencha os campos vazios')
+    }
 }
 
 if ('customElements' in window) {

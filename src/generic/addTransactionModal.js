@@ -84,9 +84,9 @@ const toggleCheckboxes = (currentFutureSelector, currentPastSelector) => {
     if (currentFutureCheckbox) {
         currentFutureCheckbox.addEventListener('change', () => {
             if (currentFutureCheckbox.checked) {
-                currentPastCheckbox.disabled = true
+                currentPastCheckbox.disabled = true;
             } else {
-                currentPastCheckbox.disabled = false
+                currentPastCheckbox.disabled = false;
             }
         })
     }
@@ -99,4 +99,15 @@ const toggleCheckboxes = (currentFutureSelector, currentPastSelector) => {
             }
         })
     }
+}
+
+const verifyFieldFillTransaction = (financialType, transactionDetails) => {
+    const requiredFields = {
+        income: ['income', 'value', 'dueDate'],
+        expense: ['expense', 'category', 'value', 'dueDate']
+    }
+
+    const fields = requiredFields[financialType]
+    return fields.every(field => transactionDetails[field] !== '' && transactionDetails[field] !== undefined)
+
 }
