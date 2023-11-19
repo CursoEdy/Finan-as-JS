@@ -11,6 +11,7 @@ class AddIncomeModal extends HTMLElement {
         setTimeout(() => {
             createSelectElement('income', 'add', '.select-container-income', 'Categoria de Receitas', window.typeIncome, window.typeIncome.length);
             createSelectElement('income', 'payment-method', '.select-container-payment-method-income', 'Metodo de pagamento', window.paymentMethod, window.paymentMethod.length);
+            toggleCheckboxes('.currentFutureFixedIncome', '.currentPastFixedIncome')
         }, 1000)
     }
 }
@@ -25,23 +26,4 @@ const handleAddIncome = (event) => {
 
 if ('customElements' in window) {
     customElements.define('app-add-income-modal', AddIncomeModal)
-}
-
-const formatCurrency = (event, financialType) => {
-    const filterValue = event.target.value.replace(/\D/g, '');
-
-    const currency = new Intl.NumberFormat('pt-BR', {
-        style: 'currency',
-        currency: 'BRL'
-    }).format(parseFloat(filterValue / 100))
-
-    event.target.value = currency;
-
-    const valueFormated = parseFloat(filterValue / 100);
-
-    if (financialType === 'income') {
-        window.valueAddIncomeModal = valueFormated;
-    } else if (financialType === 'expense') {
-        window.valueAddExpenseModal = valueFormated;
-    }
 }

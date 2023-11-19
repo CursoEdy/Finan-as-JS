@@ -57,3 +57,46 @@ const selectInputsDom = (type) => {
 
     return result;
 }
+
+const formatCurrency = (event, financialType) => {
+    const filterValue = event.target.value.replace(/\D/g, '');
+
+    const currency = new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL'
+    }).format(parseFloat(filterValue / 100))
+
+    event.target.value = currency;
+
+    const valueFormated = parseFloat(filterValue / 100);
+
+    if (financialType === 'income') {
+        window.valueAddIncomeModal = valueFormated;
+    } else if (financialType === 'expense') {
+        window.valueAddExpenseModal = valueFormated;
+    }
+}
+
+const toggleCheckboxes = (currentFutureSelector, currentPastSelector) => {
+    const currentFutureCheckbox = document.querySelector(currentFutureSelector);
+    const currentPastCheckbox = document.querySelector(currentPastSelector);
+
+    if (currentFutureCheckbox) {
+        currentFutureCheckbox.addEventListener('change', () => {
+            if (currentFutureCheckbox.checked) {
+                currentPastCheckbox.disabled = true
+            } else {
+                currentPastCheckbox.disabled = false
+            }
+        })
+    }
+    if (currentPastCheckbox) {
+        currentPastCheckbox.addEventListener('change', () => {
+            if (currentPastCheckbox.checked) {
+                currentFutureCheckbox.disabled = true
+            } else {
+                currentFutureCheckbox.disabled = false
+            }
+        })
+    }
+}
