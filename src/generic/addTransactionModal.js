@@ -111,3 +111,85 @@ const verifyFieldFillTransaction = (financialType, transactionDetails) => {
     return fields.every(field => transactionDetails[field] !== '' && transactionDetails[field] !== undefined)
 
 }
+
+const registerFixedTransaction = async (financialType) => {
+    const selectInput = selectInputsDom(financialType);
+    const apiUrl = `${window.apiURL}/auth/${financialType}s`;
+    const currentDate = new Date();
+    const currentMonthIndex = currentDate.getMonth();
+    
+    if (selectInput.currentFutureFixed) {
+        //criar window.months no arquivo GobalVariables
+        const fututeMonths = window.months.slice(currentMonthIndex);
+        await registerTransactions(apiUrl, financialType, selectInput, fututeMonths)
+    } else if (selectInput.currentPastFixed) {
+        const AllMonths = window.months;
+        await registerTransactions( apiUrl, financialType, selectInput, AllMonths)
+    }
+}
+
+const currentMonthTransactionRegistration = async (financialType) => {
+    console.log('currenteMoth =>> ' + financialType)
+}
+
+const registerTransactions = async (apiUrl, financialType, selectinputs, monthsToRegister) => {
+    const dateReplace = selectinputs.dueDate.replace(/-/g, '$').split('$')
+
+    for (const month of monthsToRegister) {
+        const dueDate = new Date(dateReplace[0], getMonthIndex(month), dateReplace[2]);
+        const payload = createPayload(financialType, selectinputs, month, dueDate)
+
+        try {
+            //criar window.registerItem(apiUrl, payload) no arquivo Api.js
+            await window.registerItem(apiUrl, payload)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
+const getMonthIndex = (month) => {
+    const monthsInPortuguese = [
+        'janeiro',
+        'fevereiro',
+        'março',
+        'abril',
+        'maio',
+        'junho',
+        'julho',
+        'agosto',
+        'setembro',
+        'outubro',
+        'novembro',
+        'dezembro',
+    ];
+
+    return monthsInPortuguese.indexOf(month.toLowerCase());
+}
+
+const createPayload = (financialType, selectinputs, month, dueDate) => {
+    //criar função getCurrentYear na pasta generic no arquivo MonthsTransaction
+    const currentYear = getCurrentYear();
+
+    const payload = {
+        user: {
+            title: selectinputs.user,
+            month: {
+                title: month,
+                year: currentYear,
+                listMonth: {
+                    [financialType]: selectinputs[financialType],
+                    value: selectinputs.value,
+                    dueDate,
+                    paymentMethod: selectinputs.paymentMethod
+                }
+            }
+        }
+    }
+
+    if (financialType === 'expense') {
+        payload.user.month.listmonth.category = selectinputs.category;
+    }
+
+    return payload;
+}

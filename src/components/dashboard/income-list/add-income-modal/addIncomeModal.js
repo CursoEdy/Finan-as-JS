@@ -24,7 +24,12 @@ const handleAddIncome = (event) => {
     if (!verifyFieldFillTransaction('income', incomeDetails)) {
         buttonAddIncome.removeAttribute('data-dismiss');
         alert('Preencha os campos vazios')
+        return;
     }
+
+    buttonAddIncome.setAttribute('data-dismiss', 'modal');
+    incomeDetails.currentFutureFixed || incomeDetails.currentPastFixed ? registerFixedTransaction('income') : currentMonthTransactionRegistration('income');
+
 }
 
 if ('customElements' in window) {

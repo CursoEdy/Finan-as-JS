@@ -42,3 +42,13 @@ window.downloadImg = (url, param) => {
         }
     })
 }
+
+window.registerItem = (url, data) => {
+    return fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-type': 'application/json'
+        }
+    })
+}
