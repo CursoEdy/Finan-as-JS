@@ -117,19 +117,27 @@ const registerFixedTransaction = async (financialType) => {
     const apiUrl = `${window.apiURL}/auth/${financialType}s`;
     const currentDate = new Date();
     const currentMonthIndex = currentDate.getMonth();
-    
+
     if (selectInput.currentFutureFixed) {
         //criar window.months no arquivo GobalVariables
         const fututeMonths = window.months.slice(currentMonthIndex);
         await registerTransactions(apiUrl, financialType, selectInput, fututeMonths)
     } else if (selectInput.currentPastFixed) {
         const AllMonths = window.months;
-        await registerTransactions( apiUrl, financialType, selectInput, AllMonths)
+        await registerTransactions(apiUrl, financialType, selectInput, AllMonths)
     }
+
+    clearForms(financialType);
+
 }
 
-const currentMonthTransactionRegistration = async (financialType) => {
-    console.log('currenteMoth =>> ' + financialType)
+const clearForms = (financialType) => {
+    //cria variavel addIncome/addExpense no arquivo global
+    window[`add${capitalizeFirstLetter(financialType)}`].add = { request: true }
+    document.querySelector(`.add-${financialType}-modal-form`).reset();
+    document.querySelector(`.currentFutureFixed${capitalizeFirstLetter(financialType)}`).disabled = false;
+    document.querySelector(`.currentPastFixed${capitalizeFirstLetter(financialType)}`).disabled = false;
+    document.querySelector(`.add-${financialType}`).setAttribute('data-dismiss', 'modal');
 }
 
 const registerTransactions = async (apiUrl, financialType, selectinputs, monthsToRegister) => {
@@ -188,8 +196,95 @@ const createPayload = (financialType, selectinputs, month, dueDate) => {
     }
 
     if (financialType === 'expense') {
-        payload.user.month.listmonth.category = selectinputs.category;
+        payload.user.month.listMonth.category = selectinputs.category;
     }
 
     return payload;
+}
+
+const currentMonthTransactionRegistration = async (financialType) => {
+    const apiUrl = `${window.apiURL}/auth/${financialType}s`;
+    const buttonAddTransaction = document.querySelector(`.add-${financialType}`);
+    buttonAddTransaction.setAttribute('data-dismiss', 'modal');
+
+    const payload = generateMonthlyDataPayload(financialType);
+
+    try {
+        await window.registerItem(apiUrl, payload)
+            .then(() => {
+                window[`add${capitalizeFirstLetter(financialType)}`].add = { request: true }
+            })
+            document.querySelector(`.add-${financialType}-modal-form`).reset();
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const generateMonthlyDataPayload = (financialType) => {
+    const selectinputs = selectInputsDom(financialType);
+    const dueDate = document.querySelector(`.dueDate${capitalizeFirstLetter(financialType)}`).value;
+    const generateDateCall = generateDateForTransaction(dueDate);
+
+    const monthSelected = generateDateCall.month;
+    const currentYear = generateDateCall.year;
+
+    const generatePortuguese = generatePortugueseDateFormatTransaction(dueDate);
+
+    const payload = {
+        user: {
+            title: selectinputs.user,
+            month: {
+                title: monthSelected,
+                year: currentYear,
+                listMonth: {
+                    [financialType]: selectinputs[financialType],
+                    value: selectinputs.value,
+                    dueDate: generatePortuguese,
+                    paymentMethod: selectinputs.paymentMethod
+                }
+            }
+        }
+    }
+
+    if (financialType === 'expense') {
+        payload.user.month.listMonth.category = selectinputs.category;
+    }
+
+    return payload;
+
+}
+
+const generateDateForTransaction = (date) => {
+    const dateReplace = date.replace(/-/g, '$').split('$');
+
+    let fixedMonth = Number(dateReplace[1] - 1);
+    let newDate = new Date(dateReplace[0], fixedMonth, dateReplace[2]);
+
+    const monthDateSelected = newDate.toLocaleDateString('pt-br', {
+        month: 'long'
+    })
+
+    let formatedDateString = capitalizeFirstLetter(monthDateSelected)
+
+    const year = newDate.getFullYear();
+
+    return {
+        month: formatedDateString,
+        year: year
+    }
+}
+
+const generatePortugueseDateFormatTransaction = (date) => {
+    const dateReplace = date.replace(/-/g, '$').split('$');
+
+    let fixedMonth = Number(dateReplace[1] - 1);
+    let newDate = new Date(dateReplace[0], fixedMonth, dateReplace[2]);
+
+    const monthDateSelected = newDate.toLocaleDateString('pt-br', {
+        month: 'long'
+    })
+
+    let indexMonthCurrent = getMonthIndex(monthDateSelected);
+
+    return new Date(dateReplace[0], indexMonthCurrent, dateReplace[2]);
 }
